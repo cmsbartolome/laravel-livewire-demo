@@ -19,16 +19,3 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', 'App\Http\Controllers\Auth\AuthController@login')->name('api-login');
-    Route::post('register', 'App\Http\Controllers\Auth\AuthController@register');
-    Route::group(['middleware' => 'auth:api'], function() {
-        Route::get('logout', 'App\Http\Controllers\Auth\AuthController@logout');
-        Route::get('user', 'App\Http\Controllers\Auth\AuthController@user');
-        Route::apiResource('products','App\Http\Controllers\ProductController');
-        Route::get('load-more-product', 'App\Http\Controllers\ProductController@loadMore');
-    });
-});
-
-Route::apiResource('todos','App\Http\Controllers\TodoController');
-Route::post('send-email', 'App\Http\Controllers\TodoController@send');
